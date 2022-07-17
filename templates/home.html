@@ -1,0 +1,22 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+ 
+{% block content %}
+  {% for post in object_list %}
+    <div class="post-entry">
+      <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+      <p>{{ post.body }}</p>
+<style>
+   h1 {
+    font-size: 90%;
+    border-bottom: 2px solid maroon;
+    font-weight: normal;
+    padding-bottom: 5px;
+   }
+  </style>
+<div class="date">
+    <h1>Опубликовано: {{ post.published_date }}</h1>
+</div>
+    </div>
+  {% endfor %}
+{% endblock content %}

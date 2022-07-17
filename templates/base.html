@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Сайт о зелёной энергетике</title>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/fonts.css' %}" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="http://127.0.0.1:8000/">Возобновляемые</a></h1>
+				<p><a href="#http://127.0.0.1:8000/" rel="nofollow">источники электроэнергии</a></p>
+			</div>
+                       <div id="social">
+				<ul class="sidebar-nav">
+
+    <b>Авторизация</b>
+
+   {% if user.is_authenticated %}
+     <li>Пользователь: {{ user.get_username }}</li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
+   {% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Войти</a></li>
+   {% endif %} 
+  </ul>
+			</div>
+</div>
+		<div id="menu" class="container">
+			<ul>
+				<li class="current_page_item"><a href="http://127.0.0.1:8000/" accesskey="1" title="">Главная</a></li>
+				<li><a href="http://127.0.0.1:8000/accounts/login/" accesskey="1" title="">Вход на сайт</a></li>
+				<li><a href="http://127.0.0.1:8000/accounts/signup/" accesskey="2" title="">Регистрация</a></li>
+				<li><a href="#" accesskey="3" title="">О нас</a></li>
+				<li><a href="#" accesskey="4" title="">Гостевая книга</a></li>
+				<li><a href="#" accesskey="5" title="">Наши контакты</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page" class="container">
+		<div>
+                 {% block content %}
+                 {% endblock content %}
+    </div>
+	</div>
+</div>
+<div id="footer">
+	<p>&copy; Design by <a href="http://github.com/noonko" rel="nofollow">noonko</a>.</p>
+</div>
+</body>
+</html>

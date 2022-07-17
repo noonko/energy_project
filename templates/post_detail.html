@@ -1,0 +1,27 @@
+<!-- templates/post_detail.html -->
+{% extends 'base.html' %}
+ 
+{% block content %}
+  <div class="post-entry">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.body }}</p>
+  </div>
+<div class="date">
+    Опубликовано: {{ post.published_date }}
+</div>
+<hr>
+<h2 id="comments">Комментарии:</h2>
+{% for comment in post.comment_set.all %}
+<b>{{ comment.name }}</b> написал <b>{{ comment.created_on|timesince }} назад</b>
+<p>{{ comment.comment }}</p>
+{% empty %}
+<p>Отправьте первый комментарий!</p>
+{% endfor %}
+<hr>
+<h3>Добавить комментарий</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+{% endblock content %}
